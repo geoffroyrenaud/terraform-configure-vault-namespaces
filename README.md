@@ -6,11 +6,11 @@ Terraform code in order to configure Vault namespaces at sclale
 In order to correctly managed Hashicorp Vault, we will use Terraform with Vault provider in order to manage all Vault configuration lifecycle.
 
 On this way, there is some difficulities with terraform vault providers and namespaces management :
-* [vault_namespace](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/namespace) can't make absolute path, you need to configure parent namespace in vault provider
-* using yaml, json, csv decode function + for_each in a terraform module (since terraform v0.13+) doesn't work with dynamic provider configuration
-* making a terraform wrapper with dynamic configuation of VAULT_NAMESPACE + terraform workspace new/select will fail with a wrong policy token (you'll get only 'default' policy) when you are in another namespace than root (provider.vault v2.14.0)
+* [vault_namespace](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/namespace) resource can't configure an absolute namespace path, you need to be on parent namespace to create children.
+* using yaml, json, csv decode function + for_each in a terraform module (since terraform v0.13+) doesn't work with dynamic namespace provider configuration.
+* making a terraform wrapper with dynamic configuation of VAULT_NAMESPACE + terraform workspace new/select will fail with a wrong policy token (you'll obtain only 'default' policy for the token-terraform used by terraform, so no rights) when you are in another namespace than root (provider.vault v2.14.0)
 
-Due to thoses limitation, here a Proof of Concept about using python parser in order to write terraform code.
+Due to thoses limitations, here a *Proof of Concept* about using python parser in order to write terraform code.
 
 
 ## Usage
