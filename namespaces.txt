@@ -1,0 +1,8 @@
+ns1
+ns1/ns1a
+ns1/ns1a/ns1aa
+ns1/ns1a/ns1ab
+ns2
+ns2/ns2a
+ns2/ns2b
+ns3
